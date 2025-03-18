@@ -42,7 +42,7 @@ public:
 	~CProcessNode(void) { };
 };
 
-#define MAX_TILES_PER_CLASS 100
+#define MAX_TILES_PER_CLASS 32768
 /// Struct in memory.
 typedef struct 
 {

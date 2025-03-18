@@ -1,44 +1,41 @@
-//--------------------------------------------------------------------------------------
-// D3D9-style HLSL Vertex Shader
-//--------------------------------------------------------------------------------------
+// DX9 Pixel Shader - HLSL version - Fixed
+sampler2D Tex0 : register(s0);         // First texture
+sampler2D Tex1 : register(s1);         // Second texture
 
-// Input vertex structure
-struct VS_INPUT
+// Constants that can be set from the application
+float4 AmbientColor : register(c0);    // Global ambient light color
+float4 Intensity    : register(c1);    // Global intensity multiplier (using x component)
+
+struct PS_INPUT
 {
-    float4 Position : POSITION;   // v0
-    float4 Color    : COLOR0;     // v1
-    float4 Tex0     : TEXCOORD0;  // v2 (not used in final output, but declared)
-    float4 Tex1     : TEXCOORD1;  // v3
+    float2 TexCoord : TEXCOORD0;       // Texture coordinates
+    float4 Diffuse  : COLOR0;          // Diffuse lighting, alpha used as blend factor
 };
 
-// Output vertex structure
-struct VS_OUTPUT
+float4 main(PS_INPUT input) : COLOR
 {
-    float4 Position : POSITION;   // o0    
-    float2 TexCoord : TEXCOORD0;  // o3.xy -> mapped to TEXCOORD0 in D3D9
-    float2 TexCoord1 : TEXCOORD0;
-    float4 Color    : COLOR0;     // o1
-};
-
-// -----------------------------------------------------------------------------
-// Match D3D12’s "cb0[3..6]" with c3..c6 in D3D9.
-// This means c3 = row0, c4 = row1, c5 = row2, c6 = row3 of the matrix.
-// -----------------------------------------------------------------------------
-float4x4 gTransform : register(c0);
-
-//--------------------------------------------------------------------------------------
-// Main Vertex Shader
-//--------------------------------------------------------------------------------------
-VS_OUTPUT main(VS_INPUT IN)
-{
-    VS_OUTPUT OUT;
-
-    float4 pos = mul(float4(IN.Position.xyz, 1.0), gTransform);
-   // pos.xy += gOffset.xy * pos.w;
-    OUT.Position = pos;
-    OUT.Color = saturate(IN.Color);
-    OUT.TexCoord = IN.Tex1.xy;
-    OUT.TexCoord1 = IN.Tex0.xy;
-
-    return OUT;
+    // Sample both textures with bilinear filtering
+    float4 color0 = tex2D(Tex0, input.TexCoord);
+    float4 color1 = tex2D(Tex1, input.TexCoord);
+    
+    // Skip processing fully transparent pixels for performance
+    if ((color0.a * color1.a) < 0.01f)
+        clip(-1);
+    
+    // Linearly interpolate between the two textures using the alpha value
+    float4 blended = lerp(color0, color1, saturate(input.Diffuse.a));
+    
+    // Apply ambient lighting
+    blended.rgb += AmbientColor.rgb * AmbientColor.a;
+    
+    // Multiply by the diffuse lighting (RGB components only)
+    blended.rgb *= input.Diffuse.rgb;
+    
+    // Apply global intensity adjustment
+    blended.rgb *= Intensity.x;
+    
+    // Ensure final color values are in valid range
+    blended.rgb = saturate(blended.rgb);
+    
+    return blended;
 }

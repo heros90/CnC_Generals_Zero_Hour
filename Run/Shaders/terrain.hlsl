@@ -1,4 +1,4 @@
-// DX9 Pixel Shader - jmarshall - HLSL version
+// DX9 Pixel Shader - HLSL version - Improved
 sampler2D Tex0 : register(s0);
 sampler2D Tex1 : register(s1);
 
@@ -17,6 +17,8 @@ float4 main(PS_INPUT input) : COLOR
     // Linearly interpolate between the two textures using the alpha value
     float4 blended = lerp(color0, color1, input.Diffuse.a);
     
-    // Multiply by the diffuse lighting
-        return float4(1, 0, 0, 1);
+    // Multiply by the diffuse lighting (RGB components only)
+    blended.rgb *= input.Diffuse.rgb;
+    
+    return blended;
 }

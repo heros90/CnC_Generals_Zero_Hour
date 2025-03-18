@@ -49,8 +49,8 @@ typedef struct {
 } TBlendTileInfo;
 
 #define INVERTED_MASK	0x1		//AND this with TBlendTileInfo.inverted to get actual inverted state
-#define FLIPPED_MASK	0x2		//AND this with TBlendTileInfo.inverted to get forced flip state (for horizontal/vertical flips).
-#define TILE_PIXEL_EXTENT 64
+#define FLIPPED_MASK	0x8		//AND this with TBlendTileInfo.inverted to get forced flip state (for horizontal/vertical flips).
+#define TILE_PIXEL_EXTENT 70
 #define TILE_BYTES_PER_PIXEL 4
 #define DATA_LEN_BYTES TILE_PIXEL_EXTENT*TILE_PIXEL_EXTENT*TILE_BYTES_PER_PIXEL
 #define DATA_LEN_PIXELS TILE_PIXEL_EXTENT*TILE_PIXEL_EXTENT
@@ -60,7 +60,7 @@ typedef struct {
 #define TILE_PIXEL_EXTENT_MIP4 4
 #define TILE_PIXEL_EXTENT_MIP5 2
 #define TILE_PIXEL_EXTENT_MIP6 1
-#define TEXTURE_WIDTH 2048 // was 1024 jba
+#define TEXTURE_WIDTH 16384 // was 1024 jba
 
 /** This class holds the bitmap data from the .tga texture files.  It is used to 
 create the D3D texture in the game and 3d windows, and to create DIB data for the 

@@ -364,7 +364,7 @@ int TerrainTextureClass::update256(WorldHeightMap *htMap)
 	D3DLOCKED_RECT locked_rect;
 	DX8_ErrorCode(D3DTexture->GetSurfaceLevel(0, &surface_level));
 	DX8_ErrorCode(surface_level->GetDesc(&surface_desc));
-	if (surface_desc.Width != 256) {
+	if (surface_desc.Width != 8192) {
 		surface_level->Release();
 		return surface_desc.Height;
 	}

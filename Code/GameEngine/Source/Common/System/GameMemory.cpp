@@ -2057,7 +2057,7 @@ DynamicMemoryAllocator::DynamicMemoryAllocator() :
 */
 void DynamicMemoryAllocator::init(MemoryPoolFactory *factory, Int numSubPools, const PoolInitRec pParms[])
 {
-	const PoolInitRec defaultDMA[7] = 
+	const PoolInitRec defaultDMA[10] = 
 	{
 		{ "dmaPool_16", 16, 64, 64 },
 		{ "dmaPool_32", 32, 64, 64 },
@@ -2065,13 +2065,16 @@ void DynamicMemoryAllocator::init(MemoryPoolFactory *factory, Int numSubPools, c
 		{ "dmaPool_128", 128, 64, 64 },
 		{ "dmaPool_256", 256, 64, 64 },
 		{ "dmaPool_512", 512, 64, 64 },
-		{ "dmaPool_1024", 1024, 64, 64 }
+		{ "dmaPool_1024", 1024, 64, 64 },
+		{ "dmaPool_2048", 2048, 64, 64 },
+		{ "dmaPool_4096", 4096, 64, 64 },
+		{ "dmaPool_8192", 8192, 64, 64 },
 	};
 
 	if (numSubPools == 0 || pParms == NULL) 
 	{
 		// use the defaults...
-		numSubPools = 7;
+		numSubPools = 10;
 		pParms = defaultDMA;
 	}
 

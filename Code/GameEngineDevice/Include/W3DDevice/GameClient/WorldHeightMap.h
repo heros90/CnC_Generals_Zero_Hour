@@ -48,8 +48,8 @@ Not ref counted.  Do not store pointers to this class.  */
 #define K_MIN_HEIGHT  0
 #define K_MAX_HEIGHT  255
 
-#define NUM_SOURCE_TILES 1024
-#define NUM_BLEND_TILES 16192
+#define NUM_SOURCE_TILES 65536
+#define NUM_BLEND_TILES 32384
 #define NUM_CLIFF_INFO 32384
 #define FLAG_VAL 0x7ADA0000
 

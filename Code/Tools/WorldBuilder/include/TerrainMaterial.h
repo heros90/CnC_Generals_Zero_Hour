@@ -57,7 +57,7 @@ public:
 
 // Implementation
 protected:
-	enum {MIN_TILE_SIZE=2, MAX_TILE_SIZE = 100};
+	enum {MIN_TILE_SIZE=8, MAX_TILE_SIZE = 4096};
 	// Generated message map functions
 	//{{AFX_MSG(TerrainMaterial)
 	virtual BOOL OnInitDialog();

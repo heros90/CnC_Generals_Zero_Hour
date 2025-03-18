@@ -556,7 +556,7 @@ GlobalData::GlobalData()
 	m_debugVisibilityTileCount = 32;	// default to 32.
 	m_debugVisibilityTileDuration = LOGICFRAMES_PER_SECOND;
 	m_debugProjectilePath = FALSE;
-	m_debugProjectileTileWidth = 10;
+	m_debugProjectileTileWidth = 2048;
 	m_debugProjectileTileDuration = LOGICFRAMES_PER_SECOND;  // Changed By Sadullah Nader
 	m_debugThreatMap = FALSE;
 	m_maxDebugThreat = 5000;

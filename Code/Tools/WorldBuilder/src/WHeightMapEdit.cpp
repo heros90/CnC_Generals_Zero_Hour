@@ -363,7 +363,7 @@ void WorldHeightMapEdit::loadBitmap(char *path, const char *uiName)
 	for (j=0; j<MAX_TILES_PER_CLASS; j++) {
 		REF_PTR_RELEASE(m_globalTextureClasses[texToUse].tiles[j]);
 	}
-	for (width = 10; width >= 1; width--) {
+	for (width = 32768; width >= 1; width--) {
 		if (numTiles >= width*width) {
 			numTiles = width*width;
 			break;
@@ -485,7 +485,7 @@ void WorldHeightMapEdit::loadImagesFromTerrainType( TerrainType *terrain )
 	for( j = 0; j < MAX_TILES_PER_CLASS; j++ )
 		REF_PTR_RELEASE( m_globalTextureClasses[ texToUse ].tiles[ j ] );
 
-	for (width = 10; width >= 1; width--) {
+	for (width = 32768; width >= 1; width--) {
 		if (numTiles >= width*width) {
 			numTiles = width*width;
 			break;
@@ -1639,7 +1639,7 @@ void WorldHeightMapEdit::showTileStatusInfo(void)
 {
 	CString message;
 	Int tilesPerRow = TEXTURE_WIDTH/(2*TILE_PIXEL_EXTENT+TILE_OFFSET);
-	Int availableTiles = 4 * tilesPerRow * tilesPerRow;
+	Int availableTiles = 512 * tilesPerRow * tilesPerRow;
 	Int availableBlends = NUM_BLEND_TILES;
 
 	CString tmp;

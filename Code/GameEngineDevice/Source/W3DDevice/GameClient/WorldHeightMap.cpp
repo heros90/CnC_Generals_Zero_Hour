@@ -1167,17 +1167,40 @@ Int WorldHeightMap::countTiles(InputStream *pStr)
 	// 2x2 gives 4, 
 	// 1x1 gives 1, 
 	// else 0;
-	if (tileWidth>10 || tileHeight>10) return(0);  // don't do huge images, or bad files.
-	if (tileWidth>=10 && tileHeight >=10) return(100);
-	if (tileWidth>=9 && tileHeight >=9) return(81);
-	if (tileWidth>=8 && tileHeight >=8) return(64);
-	if (tileWidth>=7 && tileHeight >=7) return(49);
-	if (tileWidth>=6 && tileHeight >=6) return(36);
-	if (tileWidth>=5 && tileHeight >=5) return(25);
-	if (tileWidth>=4 && tileHeight >=4) return(16);
-	if (tileWidth>=3 && tileHeight >=3) return(9);
-	if (tileWidth>=2 && tileHeight >=2) return(4);
-	if (tileWidth>=1 && tileHeight >=1) return(1);
+	if (tileWidth > 4096 || tileHeight > 4096) return(16777216);  // don't do huge images, or bad files.
+	if (tileWidth >= 65536 && tileHeight >= 65536) return(4294967296);
+	if (tileWidth >= 32768 && tileHeight >= 32768) return(1073741824);
+	if (tileWidth >= 2048 && tileHeight >= 2048) return(4194304);
+	if (tileWidth >= 1024 && tileHeight >= 1024) return(1048576);
+	if (tileWidth >= 29 && tileHeight >= 29) return(841);
+	if (tileWidth >= 28 && tileHeight >= 28) return(784);
+	if (tileWidth >= 27 && tileHeight >= 27) return(729);
+	if (tileWidth >= 26 && tileHeight >= 26) return(676);
+	if (tileWidth >= 25 && tileHeight >= 25) return(625);
+	if (tileWidth >= 24 && tileHeight >= 24) return(576);
+	if (tileWidth >= 23 && tileHeight >= 23) return(529);
+	if (tileWidth >= 22 && tileHeight >= 22) return(484);
+	if (tileWidth >= 21 && tileHeight >= 21) return(414);
+	if (tileWidth >= 20 && tileHeight >= 20) return(400);
+	if (tileWidth >= 19 && tileHeight >= 19) return(316);
+	if (tileWidth >= 18 && tileHeight >= 18) return(324);
+	if (tileWidth >= 17 && tileHeight >= 17) return(289);
+	if (tileWidth >= 16 && tileHeight >= 16) return(256);
+	if (tileWidth >= 15 && tileHeight >= 15) return(225);
+	if (tileWidth >= 14 && tileHeight >= 14) return(196);
+	if (tileWidth >= 13 && tileHeight >= 13) return(169);
+	if (tileWidth >= 12 && tileHeight >= 12) return(144);
+	if (tileWidth >= 11 && tileHeight >= 11) return(121);
+	if (tileWidth >= 10 && tileHeight >= 10) return(100);
+	if (tileWidth >= 9 && tileHeight >= 9) return(81);
+	if (tileWidth >= 8 && tileHeight >= 8) return(64);
+	if (tileWidth >= 7 && tileHeight >= 7) return(49);
+	if (tileWidth >= 6 && tileHeight >= 6) return(36);
+	if (tileWidth >= 5 && tileHeight >= 5) return(25);
+	if (tileWidth >= 4 && tileHeight >= 4) return(16);
+	if (tileWidth >= 3 && tileHeight >= 3) return(9);
+	if (tileWidth >= 2 && tileHeight >= 2) return(4);
+	if (tileWidth >= 1 && tileHeight >= 1) return(1);
 	return(0);
 }
 /*Break down a .tga file into a collection of tiles.  numRows * numRows total tiles.*/

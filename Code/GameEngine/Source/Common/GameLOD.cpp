@@ -87,7 +87,7 @@ static const char *StaticGameLODNames[]=
 StaticGameLODInfo::StaticGameLODInfo(void)
 {
 	m_minFPS=0;
-	m_minProcessorFPS=0;
+	m_minProcessorFPS=144;
 	m_sampleCount2D=6;
 	m_sampleCount3D=24;
 	m_streamCount=2;
@@ -95,8 +95,8 @@ StaticGameLODInfo::StaticGameLODInfo(void)
 
 	m_useShadowVolumes=TRUE;
 	m_useShadowDecals=TRUE;
-	m_useCloudMap=TRUE;
-	m_useLightMap=TRUE;
+	m_useCloudMap=FALSE;
+	m_useLightMap=FALSE;
 	m_showSoftWaterEdge=TRUE;
 	m_maxTankTrackEdges=100;
 	m_maxTankTrackOpaqueEdges=25;
@@ -105,7 +105,7 @@ StaticGameLODInfo::StaticGameLODInfo(void)
 	m_useTreeSway=TRUE;
 	m_useEmissiveNightMaterials=TRUE;
 	m_textureReduction = 0;	//none
-	m_useFpsLimit = TRUE;
+	m_useFpsLimit =FALSE;
 	m_enableDynamicLOD = TRUE;
 	m_useTrees = TRUE;
 }
